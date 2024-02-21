@@ -11,10 +11,10 @@ def load_data(file_name):
 
     return train_df, test_df
 
-def create_csv(file_name, predictions):
+def create_csv(file_name, predictions, cols=["id", "prediction"]):
     # Assuming 'df' is your Spark DataFrame
     # Convert the Spark DataFrame to a Pandas DataFrame
-    pandas_df = predictions.select("id", "prediction").toPandas()
+    pandas_df = predictions.select(cols[0], cols[1]).toPandas()
 
     # Define the local path where you want to save the CSV
     output_csv_path = f"../data/{file_name}/submission.csv"
